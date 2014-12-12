@@ -413,7 +413,7 @@ jb_socket connect_to(const char *host, int portnum, struct client_state *csp)
       return(JB_INVALID_SOCKET);
    }
    
-   log_error(LOG_LEVEL_GPC, "after select");
+   log_error(LOG_LEVEL_GPC, "int connect()  : after select");
    
    return(fd);
 

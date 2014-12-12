@@ -1304,8 +1304,6 @@ static void chat(struct client_state *csp)
       FD_SET(csp->sfd, &rfds);
 	  
 	  
-	  log_error(LOG_LEVEL_GPC, "in chat() : before select ");
-	  
       n = select((int)maxfd+1, &rfds, NULL, NULL, NULL);
 
       if (n < 0)
