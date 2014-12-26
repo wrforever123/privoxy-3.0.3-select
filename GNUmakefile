@@ -244,7 +244,7 @@ SPECIAL_CFLAGS = -pthread
 OTHER_CFLAGS =   
 
 CFLAGS = -pipe -O2  $(OTHER_CFLAGS) $(SPECIAL_CFLAGS) -Wall \
-          -Ipcre 
+          -Ipcre -g
 
 LDFLAGS = $(DEBUG_CFLAGS) $(SPECIAL_CFLAGS)
 

@@ -229,6 +229,7 @@ const char jbsockets_rcs[] = "$Id: jbsockets.c,v 1.35.2.6 2003/12/17 16:34:40 oe
 #include <sys/ioctl.h>
 #include <netdb.h>
 #include <sys/socket.h>
+#include <sys/epoll.h>
 
 #ifndef __BEOS__
 #include <netinet/tcp.h>
@@ -281,11 +282,14 @@ const char jbsockets_h_rcs[] = JBSOCKETS_H_VERSION;
  *********************************************************************/
 jb_socket connect_to(const char *host, int portnum, struct client_state *csp)
 {
+#define	MAX_EVENTS	1024
    struct sockaddr_in inaddr;
-   jb_socket fd;
+   jb_socket fd, epollfd;
    int addr;
-   fd_set wfds;
-   struct timeval tv[1];
+   //fd_set wfds;
+   //struct timeval tv[1];
+   struct epoll_event ev;
+   struct epoll_event evlist[MAX_EVENTS];
    
 #if !defined(_WIN32) && !defined(__BEOS__) && !defined(AMIGA)
    int   flags;
@@ -395,18 +399,36 @@ jb_socket connect_to(const char *host, int portnum, struct client_state *csp)
 #endif /* !defined(_WIN32) && !defined(__BEOS__) && !defined(AMIGA) && !defined(__OS2__) */
 
    /* wait for connection to complete */
-   FD_ZERO(&wfds);
-   FD_SET(fd, &wfds);
+   //FD_ZERO(&wfds);
+   //FD_SET(fd, &wfds);
 
-   tv->tv_sec  = 30;
-   tv->tv_usec = 0;
+   //tv->tv_sec  = 30;
+   //tv->tv_usec = 0;
    
+   epollfd = epoll_create(MAX_EVENTS);
+   if (epollfd == -1)
+   {
+		log_error(LOG_LEVEL_GPC, "epoll_create error");
+		return JB_INVALID_SOCKET;
+   }
+
+   ev.data.fd = fd;
+   ev.events = EPOLLIN | EPOLLOUT;
+   
+   if (epoll_ctl(epollfd, EPOLL_CTL_ADD, fd, &ev) == -1)
+   {
+		log_error(LOG_LEVEL_GPC, "epoll_ctl error");
+		return JB_INVALID_SOCKET;
+   }
  
    log_error(LOG_LEVEL_GPC, "int connect() : before select");
    
 
    /* MS Windows uses int, not SOCKET, for the 1st arg of select(). Wierd! */
+#if 0
    if (select((int)fd + 1, NULL, &wfds, NULL, tv) <= 0)
+#endif
+	if (epoll_wait(epollfd, evlist, MAX_EVENTS, 30) <= 0)
    {
       log_error(LOG_LEVEL_GPC, "in select");
       close_socket(fd);
