@@ -428,7 +428,7 @@ jb_socket connect_to(const char *host, int portnum, struct client_state *csp)
 #if 0
    if (select((int)fd + 1, NULL, &wfds, NULL, tv) <= 0)
 #endif
-	if (epoll_wait(epollfd, evlist, MAX_EVENTS, 30) <= 0)
+	if (epoll_wait(epollfd, evlist, MAX_EVENTS, -1) <= 0)
    {
       log_error(LOG_LEVEL_GPC, "in select");
       close_socket(fd);

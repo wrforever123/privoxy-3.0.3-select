@@ -1,355 +1,55 @@
-Dec 26 14:23:04 Privoxy(-1219012928) Info: Privoxy version 3.0.3
-Dec 26 14:23:04 Privoxy(-1219012928) Info: Program name: ./privoxy
-Dec 26 14:23:04 Privoxy(-1219012928) Info: Listening on port 8118 for local connections only
-Dec 26 14:23:10 Privoxy(-1219069120) Request: www.baidu.com/
-Dec 26 14:23:10 Privoxy(-1219069120) Request: host == www.baidu.com, port == 80
-Dec 26 14:23:10 Privoxy(-1219069120) Request: int connect() : before select
-Dec 26 14:23:10 Privoxy(-1219069120) Request: in select
-Dec 26 14:23:10 Privoxy(-1219069120) Request: config.privoxy.org/send-stylesheet cgi call
-Dec 26 14:23:10 Privoxy(-1219069120) Request: config.privoxy.org/send-stylesheet crunch!
-Dec 26 14:23:13 Privoxy(-1219069120) Request: www.baidu.com/
-Dec 26 14:23:13 Privoxy(-1219069120) Request: host == www.baidu.com, port == 80
-Dec 26 14:23:13 Privoxy(-1219069120) Request: int connect() : before select
-Dec 26 14:23:13 Privoxy(-1219069120) Request: in select
-Dec 26 14:23:13 Privoxy(-1219069120) Request: config.privoxy.org/send-stylesheet cgi call
-Dec 26 14:23:13 Privoxy(-1219069120) Request: config.privoxy.org/send-stylesheet crunch!
-Dec 26 14:23:17 Privoxy(-1219069120) Request: www.baidu.com/
-Dec 26 14:23:18 Privoxy(-1219069120) Request: host == www.baidu.com, port == 80
-Dec 26 14:23:18 Privoxy(-1219069120) Request: int connect() : before select
-Dec 26 14:23:18 Privoxy(-1219069120) Request: int connect()  : after select
-Dec 26 14:23:19 Privoxy(-1219069120) Request: passport.baidu.com/passApi/js/uni_login_wrapper.js?cdnversion=1419574999506&_=1419574999330
-Dec 26 14:23:19 Privoxy(-1228932288) Request: suggestion.baidu.com/su?wd=&zxmode=1&json=1&p=3&sid=10382_1466_10166_10693_10500_10496_10753_10647_10458_10795_10218_10591_10356_10666_10596_10096_10658_10442_10699_10461_10404_9950_10620_10626&cb=jQuery110205976876666819375_1419574999331&_=1419574999332
-Dec 26 14:23:20 Privoxy(-1228932288) Request: host == suggestion.baidu.com, port == 80
-Dec 26 14:23:20 Privoxy(-1228932288) Request: int connect() : before select
-Dec 26 14:23:20 Privoxy(-1219069120) Request: host == passport.baidu.com, port == 80
-Dec 26 14:23:20 Privoxy(-1219069120) Request: int connect() : before select
-Dec 26 14:23:20 Privoxy(-1228932288) Request: int connect()  : after select
-Dec 26 14:23:20 Privoxy(-1219069120) Request: int connect()  : after select
-Dec 26 14:23:46 Privoxy(-1219069120) Request: www.baidu.com/
-Dec 26 14:23:47 Privoxy(-1219069120) Request: host == www.baidu.com, port == 80
-Dec 26 14:23:47 Privoxy(-1219069120) Request: int connect() : before select
-Dec 26 14:23:47 Privoxy(-1219069120) Request: in select
-Dec 26 14:23:47 Privoxy(-1219069120) Request: config.privoxy.org/send-stylesheet cgi call
-Dec 26 14:23:47 Privoxy(-1219069120) Request: config.privoxy.org/send-stylesheet crunch!
-Dec 26 14:23:50 Privoxy(-1219069120) Request: www.baidu.com/
-Dec 26 14:23:50 Privoxy(-1219069120) Request: host == www.baidu.com, port == 80
-Dec 26 14:23:50 Privoxy(-1219069120) Request: int connect() : before select
-Dec 26 14:23:50 Privoxy(-1219069120) Request: int connect()  : after select
-Dec 26 14:23:51 Privoxy(-1219069120) Request: passport.baidu.com/passApi/js/uni_login_wrapper.js?cdnversion=1419575031409&_=1419575031230
-Dec 26 14:23:51 Privoxy(-1228932288) Request: suggestion.baidu.com/su?wd=&zxmode=1&json=1&p=3&sid=10382_1466_10166_10693_10500_10496_10753_10647_10458_10795_10218_10591_10356_10666_10596_10096_10658_10442_10699_10461_10404_9950_10620_10626&cb=jQuery110205172537190112931_1419575031231&_=1419575031232
-Dec 26 14:23:51 Privoxy(-1219069120) Request: host == passport.baidu.com, port == 80
-Dec 26 14:23:51 Privoxy(-1219069120) Request: int connect() : before select
-Dec 26 14:23:51 Privoxy(-1228932288) Request: host == suggestion.baidu.com, port == 80
-Dec 26 14:23:51 Privoxy(-1228932288) Request: int connect() : before select
-Dec 26 14:23:51 Privoxy(-1219069120) Request: int connect()  : after select
-Dec 26 14:23:51 Privoxy(-1228932288) Request: int connect()  : after select
-Dec 26 14:27:23 Privoxy(-1219069120) Request: www.baidu.com/
-Dec 26 14:27:23 Privoxy(-1219069120) Request: host == www.baidu.com, port == 80
-Dec 26 14:27:23 Privoxy(-1219069120) Request: int connect() : before select
-Dec 26 14:27:23 Privoxy(-1219069120) Request: in select
-Dec 26 14:27:23 Privoxy(-1219069120) Request: config.privoxy.org/send-stylesheet cgi call
-Dec 26 14:27:23 Privoxy(-1219069120) Request: config.privoxy.org/send-stylesheet crunch!
-Dec 26 14:27:27 Privoxy(-1219069120) Request: www.baidu.com/
-Dec 26 14:27:27 Privoxy(-1219069120) Request: host == www.baidu.com, port == 80
-Dec 26 14:27:27 Privoxy(-1219069120) Request: int connect() : before select
-Dec 26 14:27:27 Privoxy(-1219069120) Request: int connect()  : after select
-Dec 26 14:27:28 Privoxy(-1219069120) Request: passport.baidu.com/passApi/js/uni_login_wrapper.js?cdnversion=1419575248401&_=1419575248207
-Dec 26 14:27:28 Privoxy(-1228932288) Request: suggestion.baidu.com/su?wd=&zxmode=1&json=1&p=3&sid=10382_1466_10166_10693_10500_10496_10753_10647_10458_10795_10218_10591_10356_10666_10596_10096_10658_10442_10699_10461_10404_9950_10620_10626&cb=jQuery110206111721141315964_1419575248208&_=1419575248209
-Dec 26 14:27:28 Privoxy(-1219069120) Request: host == passport.baidu.com, port == 80
-Dec 26 14:27:28 Privoxy(-1219069120) Request: int connect() : before select
-Dec 26 14:27:28 Privoxy(-1219069120) Request: int connect()  : after select
-Dec 26 14:27:29 Privoxy(-1228932288) Request: host == suggestion.baidu.com, port == 80
-Dec 26 14:27:29 Privoxy(-1228932288) Request: int connect() : before select
-Dec 26 14:27:29 Privoxy(-1228932288) Request: int connect()  : after select
-Dec 26 14:27:30 Privoxy(-1228932288) Request: www.baidu.com/
-Dec 26 14:27:31 Privoxy(-1228932288) Request: host == www.baidu.com, port == 80
-Dec 26 14:27:31 Privoxy(-1228932288) Request: int connect() : before select
-Dec 26 14:27:31 Privoxy(-1228932288) Request: int connect()  : after select
-Dec 26 14:27:32 Privoxy(-1228932288) Request: passport.baidu.com/passApi/js/uni_login_wrapper.js?cdnversion=1419575252659&_=1419575252466
-Dec 26 14:27:32 Privoxy(-1219069120) Request: suggestion.baidu.com/su?wd=&zxmode=1&json=1&p=3&sid=10382_1466_10166_10693_10500_10496_10753_10647_10458_10795_10218_10591_10356_10666_10596_10096_10658_10442_10699_10461_10404_9950_10620_10626&cb=jQuery110207556047561248308_1419575252467&_=1419575252468
-Dec 26 14:27:33 Privoxy(-1228932288) Request: host == passport.baidu.com, port == 80
-Dec 26 14:27:33 Privoxy(-1228932288) Request: int connect() : before select
-Dec 26 14:27:33 Privoxy(-1228932288) Request: int connect()  : after select
-Dec 26 14:27:33 Privoxy(-1219069120) Request: host == suggestion.baidu.com, port == 80
-Dec 26 14:27:33 Privoxy(-1219069120) Request: int connect() : before select
-Dec 26 14:27:33 Privoxy(-1219069120) Request: int connect()  : after select
-Dec 26 14:27:35 Privoxy(-1228932288) Request: suggestion.baidu.com/su?wd=&sugmode=2&zxmode=1&json=1&p=3&sid=10382_1466_10166_10693_10500_10496_10753_10647_10458_10795_10218_10591_10356_10666_10596_10096_10658_10442_10699_10461_10404_9950_10620_10626&cb=jQuery110207556047561248308_1419575252467&_=1419575252469
-Dec 26 14:27:35 Privoxy(-1228932288) Request: host == suggestion.baidu.com, port == 80
-Dec 26 14:27:35 Privoxy(-1228932288) Request: int connect() : before select
-Dec 26 14:27:35 Privoxy(-1228932288) Request: int connect()  : after select
-Dec 26 14:27:35 Privoxy(-1219069120) Request: b1.bdstatic.com/img/pc.gif?_t=186
-Dec 26 14:27:35 Privoxy(-1228932288) Request: ecma.bdimg.com/public03/pc.gif?_t=1419575255895
-Dec 26 14:27:35 Privoxy(-1239418048) Request: i7.baidu.com/ps_default.gif?_t=1419575255896
-Dec 26 14:27:35 Privoxy(-1247810752) Request: i8.baidu.com/ps_default.gif?_t=1419575255896
-Dec 26 14:27:35 Privoxy(-1256203456) Request: i9.baidu.com/ps_default.gif?_t=1419575255897
-Dec 26 14:27:35 Privoxy(-1264596160) Request: t10.baidu.com/ps_default.gif?_t=1419575255898
-Dec 26 14:27:35 Privoxy(-1272988864) Request: t11.baidu.com/ps_default.gif?_t=1419575255898
-Dec 26 14:27:35 Privoxy(-1281381568) Request: t12.baidu.com/ps_default.gif?_t=1419575255901
-Dec 26 14:27:36 Privoxy(-1289774272) Request: suggestion.baidu.com/su?wd=as&zxmode=1&json=1&p=3&sid=10382_1466_10166_10693_10500_10496_10753_10647_10458_10795_10218_10591_10356_10666_10596_10096_10658_10442_10699_10461_10404_9950_10620_10626&cb=jQuery110207556047561248308_1419575252467&_=1419575252470
-Dec 26 14:27:36 Privoxy(-1298166976) Request: www.baidu.com/s?ie=utf-8&mod=1&isid=16456C21BB499489&pstg=5&_ss=1&ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd=as&rsv_pq=ddeae2180000d88f&rsv_t=b3b8QrHd13GYlRkNw%2FUYHLXSCuM4mJdicC4fipSySeN6yMPSkBmcIqrnc9k&rsv_sid=1443_10672_10776_10489_10500_10497_10752_10647_10458_10796_10218_9250_10356_10666_10095_10657_10700_10461_10403_9950_10618_10701_10627&csor=2&_ck=960.0.-1.-1.-1.-1.-1&_cr1=26425
-Dec 26 14:27:36 Privoxy(-1228932288) Request: host == ecma.bdimg.com, port == 80
-Dec 26 14:27:36 Privoxy(-1228932288) Request: int connect() : before select
-Dec 26 14:27:36 Privoxy(-1264596160) Request: host == t10.baidu.com, port == 80
-Dec 26 14:27:36 Privoxy(-1264596160) Request: int connect() : before select
-Dec 26 14:27:36 Privoxy(-1264596160) Request: int connect()  : after select
-Dec 26 14:27:36 Privoxy(-1228932288) Request: int connect()  : after select
-Dec 26 14:27:36 Privoxy(-1228932288) Request: suggestion.baidu.com/su?wd=asd%20&zxmode=1&json=1&p=3&sid=10382_1466_10166_10693_10500_10496_10753_10647_10458_10795_10218_10591_10356_10666_10596_10096_10658_10442_10699_10461_10404_9950_10620_10626&cb=jQuery110207556047561248308_1419575252467&_=1419575252471
-Dec 26 14:27:36 Privoxy(-1264596160) Request: www.baidu.com/s?ie=utf-8&mod=1&isid=16456C21BB499489&pstg=5&_ss=1&ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd=asd&rsv_pq=ddeae2180000d88f&rsv_t=b3b8QrHd13GYlRkNw%2FUYHLXSCuM4mJdicC4fipSySeN6yMPSkBmcIqrnc9k&rsv_sid=1443_10672_10776_10489_10500_10497_10752_10647_10458_10796_10218_9250_10356_10666_10095_10657_10700_10461_10403_9950_10618_10701_10627&csor=4&_ck=1060.0.-1.-1.-1.-1.-1&_cr1=26567
-Dec 26 14:27:36 Privoxy(-1289774272) Request: host == suggestion.baidu.com, port == 80
-Dec 26 14:27:36 Privoxy(-1289774272) Request: int connect() : before select
-Dec 26 14:27:36 Privoxy(-1298166976) Request: host == www.baidu.com, port == 80
-Dec 26 14:27:36 Privoxy(-1298166976) Request: int connect() : before select
-Dec 26 14:27:36 Privoxy(-1298166976) Request: int connect()  : after select
-Dec 26 14:27:36 Privoxy(-1289774272) Request: int connect()  : after select
-Dec 26 14:27:36 Privoxy(-1281381568) Request: host == t12.baidu.com, port == 80
-Dec 26 14:27:36 Privoxy(-1281381568) Request: int connect() : before select
-Dec 26 14:27:36 Privoxy(-1281381568) Request: int connect()  : after select
-Dec 26 14:27:36 Privoxy(-1239418048) Request: host == i7.baidu.com, port == 80
-Dec 26 14:27:36 Privoxy(-1239418048) Request: int connect() : before select
-Dec 26 14:27:36 Privoxy(-1247810752) Request: host == i8.baidu.com, port == 80
-Dec 26 14:27:36 Privoxy(-1247810752) Request: int connect() : before select
-Dec 26 14:27:36 Privoxy(-1239418048) Request: int connect()  : after select
-Dec 26 14:27:36 Privoxy(-1247810752) Request: int connect()  : after select
-Dec 26 14:27:36 Privoxy(-1272988864) Request: host == t11.baidu.com, port == 80
-Dec 26 14:27:36 Privoxy(-1219069120) Request: host == b1.bdstatic.com, port == 80
-Dec 26 14:27:36 Privoxy(-1219069120) Request: int connect() : before select
-Dec 26 14:27:36 Privoxy(-1272988864) Request: int connect() : before select
-Dec 26 14:27:36 Privoxy(-1272988864) Request: int connect()  : after select
-Dec 26 14:27:36 Privoxy(-1219069120) Request: int connect()  : after select
-Dec 26 14:27:36 Privoxy(-1228932288) Request: host == suggestion.baidu.com, port == 80
-Dec 26 14:27:36 Privoxy(-1228932288) Request: int connect() : before select
-Dec 26 14:27:36 Privoxy(-1228932288) Request: int connect()  : after select
-Dec 26 14:27:36 Privoxy(-1228932288) Request: www.baidu.com/s?ie=utf-8&mod=1&isid=16456C21BB499489&pstg=0&_ss=1&ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd=asd&rsv_pq=ddeae2180000d88f&rsv_t=b3b8QrHd13GYlRkNw%2FUYHLXSCuM4mJdicC4fipSySeN6yMPSkBmcIqrnc9k&rsv_enter=1&rsv_sug3=3&rsv_sug9=eb&rsv_sug4=337&rsv_sug2=0&inputT=543&rsv_sid=1443_10672_10776_10489_10500_10497_10752_10647_10458_10796_10218_9250_10356_10666_10095_10657_10700_10461_10403_9950_10618_10701_10627&f4s=1&csor=3&_ck=1060.0.-1.-1.-1.-1.-1&_cr1=33178
-Dec 26 14:27:36 Privoxy(-1264596160) Request: host == www.baidu.com, port == 80
-Dec 26 14:27:36 Privoxy(-1264596160) Request: int connect() : before select
-Dec 26 14:27:36 Privoxy(-1264596160) Request: int connect()  : after select
-Dec 26 14:27:37 Privoxy(-1228932288) Request: host == www.baidu.com, port == 80
-Dec 26 14:27:37 Privoxy(-1228932288) Request: int connect() : before select
-Dec 26 14:27:37 Privoxy(-1228932288) Request: int connect()  : after select
-Dec 26 14:27:37 Privoxy(-1256203456) Request: host == i9.baidu.com, port == 80
-Dec 26 14:27:37 Privoxy(-1256203456) Request: int connect() : before select
-Dec 26 14:27:37 Privoxy(-1256203456) Request: int connect()  : after select
-Dec 26 14:27:39 Privoxy(-1228932288) Request: t12.baidu.com/it/u=2307694892,2717239602&fm=58
-Dec 26 14:27:39 Privoxy(-1256203456) Request: t2.baidu.com/it/u=317565322,1625274098&fm=20
-Dec 26 14:27:39 Privoxy(-1264596160) Request: t2.baidu.com/it/u=3480687643,1998849062&fm=20
-Dec 26 14:27:39 Privoxy(-1272988864) Request: t2.baidu.com/it/u=4080731014,2447916281&fm=20
-Dec 26 14:27:39 Privoxy(-1219069120) Request: t1.baidu.com/it/u=3333312024,1144818446&fm=20
-Dec 26 14:27:39 Privoxy(-1239418048) Request: t10.baidu.com/it/u=2906099694,3927801346&fm=96
-Dec 26 14:27:39 Privoxy(-1247810752) Request: i7.baidu.com/it/u=2961080635,2456163746&fm=96&s=77DE19D6002074AA55DDB8F103009021
-Dec 26 14:27:39 Privoxy(-1281381568) Request: bcscdn.baidu.com/resource/fFhOBIAwuWkquUZenFvkrUVwZWAqBmsenGv3XURbZIgYZmCLZWAq.jpg
-Dec 26 14:27:39 Privoxy(-1289774272) Request: ecma.bdimg.com/tam-ogel/92bd41c0-c8d4-422f-b26f-111ee52e39e0.js
-Dec 26 14:27:39 Privoxy(-1298166976) Request: www.baidu.com/aladdin/img/stockdynamic/arrow.png
-Dec 26 14:27:39 Privoxy(-1228932288) Request: host == t12.baidu.com, port == 80
-Dec 26 14:27:39 Privoxy(-1228932288) Request: int connect() : before select
-Dec 26 14:27:39 Privoxy(-1228932288) Request: int connect()  : after select
-Dec 26 14:27:39 Privoxy(-1306559680) Request: www.baidu.com/s?ie=utf-8&mod=2&cqid=966c10ef000057b2&pstg=0&istc=2271&ver=026tTwID0bHaje7bpqGCzu9X2Ld7WyyLDIK&chk=549cffd0&isid=16456C21BB499489&ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd=asd&rsv_pq=ddeae2180000d88f&rsv_t=b3b8QrHd13GYlRkNw%2FUYHLXSCuM4mJdicC4fipSySeN6yMPSkBmcIqrnc9k&rsv_enter=1&rsv_sug3=3&rsv_sug9=eb&rsv_sug4=337&rsv_sug2=0&inputT=543&f4s=1&_ck=1060.0.-1.-1.-1.-1.-1
-Dec 26 14:27:39 Privoxy(-1228932288) Request: sclick.baidu.com/w.gif?q=asd&fm=se&T=1419575248&y=9FB77D54&rsv_cache=0&rsv_tpfail=0&rsv_pstg=0&rsv_pre=3&rsv_reh=150_106_86_191_144_110_86_110_189_165|440&rsv_scr=1084_1937___590_1162&rsv_sid=10382_1466_10166_10693_10500_10496_10753_10647_10458_10795_10218_10591_10356_10666_10596_10096_10658_10442_10699_10461_10404_9950_10620_10626&cid=0&qid=966c10ef000057b2&t=1419575259033&rsv_iorr=0&rsv_tn=baidu&path=http%3A%2F%2Fwww.baidu.com%2Fs%3Fie%3Dutf-8%26f%3D8%26rsv_bp%3D1%26rsv_idx%3D1%26tn%3Dbaidu%26wd%3Dasd%26rsv_pq%3Dddeae2180000d88f%26rsv_t%3Db3b8QrHd13GYlRkNw%252FUYHLXSCuM4mJdicC4fipSySeN6yMPSkBmcIqrnc9k%26rsv_enter%3D1%26rsv_sug3%3D3%26rsv_sug9%3Deb%26rsv_sug4%3D337%26rsv_sug2%3D0%26inputT%3D543
-Dec 26 14:27:39 Privoxy(-1314952384) Request: c.baidu.com/c.gif?t=0&q=asd&p=0&pn=1
-Dec 26 14:27:39 Privoxy(-1323345088) Request: t10.baidu.com/it/u=1965615798,2302908239&fm=58
-Dec 26 14:27:39 Privoxy(-1331737792) Request: t12.baidu.com/it/u=3876896495,2096171169&fm=58
-Dec 26 14:27:39 Privoxy(-1340130496) Request: t10.baidu.com/it/u=2974277217,1396685459&fm=58
-Dec 26 14:27:39 Privoxy(-1348523200) Request: t10.baidu.com/it/u=3629306043,3423904506&fm=58
-Dec 26 14:27:39 Privoxy(-1356915904) Request: t11.baidu.com/it/u=2486739895,2838940514&fm=58
-Dec 26 14:27:39 Privoxy(-1365308608) Request: t10.baidu.com/it/u=2968451895,68206225&fm=58
-Dec 26 14:27:39 Privoxy(-1373701312) Request: t10.baidu.com/it/u=1619152215,1424414054&fm=58
-Dec 26 14:27:39 Privoxy(-1382094016) Request: t10.baidu.com/it/u=2614408311,2879401864&fm=58
-Dec 26 14:27:39 Privoxy(-1390486720) Request: t10.baidu.com/it/u=1338545802,1539063071&fm=58
-Dec 26 14:27:39 Privoxy(-1407272128) Request: t10.baidu.com/it/u=4265407512,2166127136&fm=58
-Dec 26 14:27:39 Privoxy(-1415664832) Request: t10.baidu.com/it/u=1093271886,43430555&fm=58
-Dec 26 14:27:39 Privoxy(-1398879424) Request: t12.baidu.com/it/u=515650913,3044902557&fm=58
-Dec 26 14:27:39 Privoxy(-1289774272) Request: host == ecma.bdimg.com, port == 80
-Dec 26 14:27:39 Privoxy(-1289774272) Request: int connect() : before select
-Dec 26 14:27:39 Privoxy(-1289774272) Request: int connect()  : after select
-Dec 26 14:27:39 Privoxy(-1272988864) Request: host == t2.baidu.com, port == 80
-Dec 26 14:27:39 Privoxy(-1272988864) Request: int connect() : before select
-Dec 26 14:27:39 Privoxy(-1272988864) Request: int connect()  : after select
-Dec 26 14:27:39 Privoxy(-1298166976) Request: host == www.baidu.com, port == 80
-Dec 26 14:27:39 Privoxy(-1298166976) Request: int connect() : before select
-Dec 26 14:27:39 Privoxy(-1219069120) Request: host == t1.baidu.com, port == 80
-Dec 26 14:27:39 Privoxy(-1219069120) Request: int connect() : before select
-Dec 26 14:27:39 Privoxy(-1256203456) Request: host == t2.baidu.com, port == 80
-Dec 26 14:27:39 Privoxy(-1256203456) Request: int connect() : before select
-Dec 26 14:27:39 Privoxy(-1264596160) Request: host == t2.baidu.com, port == 80
-Dec 26 14:27:39 Privoxy(-1264596160) Request: int connect() : before select
-Dec 26 14:27:39 Privoxy(-1239418048) Request: host == t10.baidu.com, port == 80
-Dec 26 14:27:39 Privoxy(-1298166976) Request: int connect()  : after select
-Dec 26 14:27:39 Privoxy(-1247810752) Request: host == i7.baidu.com, port == 80
-Dec 26 14:27:39 Privoxy(-1247810752) Request: int connect() : before select
-Dec 26 14:27:39 Privoxy(-1281381568) Request: host == bcscdn.baidu.com, port == 80
-Dec 26 14:27:39 Privoxy(-1256203456) Request: int connect()  : after select
-Dec 26 14:27:39 Privoxy(-1264596160) Request: int connect()  : after select
-Dec 26 14:27:39 Privoxy(-1247810752) Request: int connect()  : after select
-Dec 26 14:27:39 Privoxy(-1239418048) Request: int connect() : before select
-Dec 26 14:27:39 Privoxy(-1239418048) Request: int connect()  : after select
-Dec 26 14:27:39 Privoxy(-1281381568) Request: int connect() : before select
-Dec 26 14:27:39 Privoxy(-1281381568) Request: int connect()  : after select
-Dec 26 14:27:39 Privoxy(-1219069120) Request: int connect()  : after select
-Dec 26 14:27:39 Privoxy(-1323345088) Request: host == t10.baidu.com, port == 80
-Dec 26 14:27:39 Privoxy(-1323345088) Request: int connect() : before select
-Dec 26 14:27:39 Privoxy(-1340130496) Request: host == t10.baidu.com, port == 80
-Dec 26 14:27:39 Privoxy(-1340130496) Request: int connect() : before select
-Dec 26 14:27:39 Privoxy(-1323345088) Request: int connect()  : after select
-Dec 26 14:27:39 Privoxy(-1348523200) Request: host == t10.baidu.com, port == 80
-Dec 26 14:27:39 Privoxy(-1348523200) Request: int connect() : before select
-Dec 26 14:27:39 Privoxy(-1340130496) Request: int connect()  : after select
-Dec 26 14:27:39 Privoxy(-1348523200) Request: int connect()  : after select
-Dec 26 14:27:39 Privoxy(-1314952384) Request: host == c.baidu.com, port == 80
-Dec 26 14:27:39 Privoxy(-1314952384) Request: int connect() : before select
-Dec 26 14:27:39 Privoxy(-1314952384) Request: in select
-Dec 26 14:27:40 Privoxy(-1228932288) Request: host == sclick.baidu.com, port == 80
-Dec 26 14:27:40 Privoxy(-1228932288) Request: int connect() : before select
-Dec 26 14:27:40 Privoxy(-1365308608) Request: host == t10.baidu.com, port == 80
-Dec 26 14:27:40 Privoxy(-1365308608) Request: int connect() : before select
-Dec 26 14:27:40 Privoxy(-1228932288) Request: int connect()  : after select
-Dec 26 14:27:40 Privoxy(-1356915904) Request: host == t11.baidu.com, port == 80
-Dec 26 14:27:40 Privoxy(-1356915904) Request: int connect() : before select
-Dec 26 14:27:40 Privoxy(-1365308608) Request: in select
-Dec 26 14:27:40 Privoxy(-1415664832) Request: host == t10.baidu.com, port == 80
-Dec 26 14:27:40 Privoxy(-1415664832) Request: int connect() : before select
-Dec 26 14:27:40 Privoxy(-1356915904) Request: in select
-Dec 26 14:27:40 Privoxy(-1407272128) Request: host == t10.baidu.com, port == 80
-Dec 26 14:27:40 Privoxy(-1407272128) Request: int connect() : before select
-Dec 26 14:27:40 Privoxy(-1398879424) Request: host == t12.baidu.com, port == 80
-Dec 26 14:27:40 Privoxy(-1398879424) Request: int connect() : before select
-Dec 26 14:27:40 Privoxy(-1415664832) Request: int connect()  : after select
-Dec 26 14:27:40 Privoxy(-1398879424) Request: int connect()  : after select
-Dec 26 14:27:40 Privoxy(-1373701312) Request: host == t10.baidu.com, port == 80
-Dec 26 14:27:40 Privoxy(-1373701312) Request: int connect() : before select
-Dec 26 14:27:40 Privoxy(-1407272128) Request: int connect()  : after select
-Dec 26 14:27:40 Privoxy(-1373701312) Request: int connect()  : after select
-Dec 26 14:27:40 Privoxy(-1390486720) Request: host == t10.baidu.com, port == 80
-Dec 26 14:27:40 Privoxy(-1390486720) Request: int connect() : before select
-Dec 26 14:27:40 Privoxy(-1390486720) Request: int connect()  : after select
-Dec 26 14:27:40 Privoxy(-1382094016) Request: host == t10.baidu.com, port == 80
-Dec 26 14:27:40 Privoxy(-1382094016) Request: int connect() : before select
-Dec 26 14:27:40 Privoxy(-1382094016) Request: int connect()  : after select
-Dec 26 14:27:40 Privoxy(-1382094016) Request: eiv.baidu.com/mapm2/logClick/logClick5.js
-Dec 26 14:27:40 Privoxy(-1390486720) Request: t10.baidu.com/it/u=2968451895,68206225&fm=58
-Dec 26 14:27:40 Privoxy(-1373701312) Request: t11.baidu.com/it/u=2486739895,2838940514&fm=58
-Dec 26 14:27:40 Privoxy(-1390486720) Request: host == t10.baidu.com, port == 80
-Dec 26 14:27:40 Privoxy(-1390486720) Request: int connect() : before select
-Dec 26 14:27:40 Privoxy(-1373701312) Request: host == t11.baidu.com, port == 80
-Dec 26 14:27:40 Privoxy(-1373701312) Request: int connect() : before select
-Dec 26 14:27:40 Privoxy(-1390486720) Request: int connect()  : after select
-Dec 26 14:27:40 Privoxy(-1373701312) Request: int connect()  : after select
-Dec 26 14:27:40 Privoxy(-1382094016) Request: host == eiv.baidu.com, port == 80
-Dec 26 14:27:40 Privoxy(-1382094016) Request: int connect() : before select
-Dec 26 14:27:40 Privoxy(-1382094016) Request: int connect()  : after select
-Dec 26 14:27:41 Privoxy(-1382094016) Request: www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd=asd&rsv_pq=ddeae2180000d88f&rsv_t=b3b8QrHd13GYlRkNw%2FUYHLXSCuM4mJdicC4fipSySeN6yMPSkBmcIqrnc9k&rsv_enter=1&rsv_sug3=3&rsv_sug9=eb&rsv_sug4=337&rsv_sug2=0&inputT=543
-Dec 26 14:27:41 Privoxy(-1306559680) Request: host == www.baidu.com, port == 80
-Dec 26 14:27:41 Privoxy(-1306559680) Request: int connect() : before select
-Dec 26 14:27:41 Privoxy(-1306559680) Request: int connect()  : after select
-Dec 26 14:27:41 Privoxy(-1373701312) Request: www.baidu.com/cache/fpid/chromelib_1_1.js
-Dec 26 14:27:41 Privoxy(-1331737792) Request: host == t12.baidu.com, port == 80
-Dec 26 14:27:41 Privoxy(-1331737792) Request: int connect() : before select
-Dec 26 14:27:41 Privoxy(-1331737792) Request: int connect()  : after select
-Dec 26 14:27:41 Privoxy(-1382094016) Request: host == www.baidu.com, port == 80
-Dec 26 14:27:41 Privoxy(-1382094016) Request: int connect() : before select
-Dec 26 14:27:41 Privoxy(-1382094016) Request: int connect()  : after select
-Dec 26 14:27:41 Privoxy(-1373701312) Request: host == www.baidu.com, port == 80
-Dec 26 14:27:41 Privoxy(-1373701312) Request: int connect() : before select
-Dec 26 14:27:41 Privoxy(-1373701312) Request: int connect()  : after select
-Dec 26 14:27:41 Privoxy(-1373701312) Request: eclick.baidu.com/ps_fp.htm?pid=ps&fp=undefined&im=undefined&wf=undefined&br=3&qid=966c10ef000057b2&bi=16456C5FEEE81E06EEFB785A11B21BB4:FG=1
-Dec 26 14:27:42 Privoxy(-1373701312) Request: host == eclick.baidu.com, port == 80
-Dec 26 14:27:42 Privoxy(-1373701312) Request: int connect() : before select
-Dec 26 14:27:42 Privoxy(-1373701312) Request: int connect()  : after select
-Dec 26 14:27:43 Privoxy(-1382094016) Request: b1.bdstatic.com/image?imglist=1965615798_2302908239_58,3876896495_2096171169_58,2974277217_1396685459_58,3629306043_3423904506_58,2486739895_2838940514_58,2968451895_68206225_58,1619152215_1424414054_58,2614408311_2879401864_58,1338545802_1539063071_58,515650913_3044902557_58,4265407512_2166127136_58,1093271886_43430555_58&cb=cb_16381243_0
-Dec 26 14:27:43 Privoxy(-1382094016) Request: host == b1.bdstatic.com, port == 80
-Dec 26 14:27:43 Privoxy(-1382094016) Request: int connect() : before select
-Dec 26 14:27:43 Privoxy(-1382094016) Request: in select
-Dec 26 14:27:43 Privoxy(-1373701312) Request: passport.baidu.com/passApi/js/uni_login_wrapper.js?cdnversion=1419575263665&_=1419575263462
-Dec 26 14:27:43 Privoxy(-1382094016) Request: sclick.baidu.com/w.gif?q=asd&fm=se&T=1419575252&y=DBB76F90&rsv_cache=0&rsv_pre=0&rsv_reh=151_106_86_191_144_110_86_110_189_165|440&rsv_scr=1084_1938___590_1162&rsv_sid=10382_1466_10166_10693_10500_10496_10753_10647_10458_10795_10218_10591_10356_10666_10596_10096_10658_10442_10699_10461_10404_9950_10620_10626&cid=0&qid=fbc8fd9c0000e98e&t=1419575263878&rsv_iorr=1&rsv_tn=baidu&path=http%3A%2F%2Fwww.baidu.com%2Fs%3Fie%3Dutf-8%26f%3D8%26rsv_bp%3D1%26rsv_idx%3D1%26tn%3Dbaidu%26wd%3Dasd%26rsv_pq%3Dddeae2180000d88f%26rsv_t%3Db3b8QrHd13GYlRkNw%252FUYHLXSCuM4mJdicC4fipSySeN6yMPSkBmcIqrnc9k%26rsv_enter%3D1%26rsv_sug3%3D3%26rsv_sug9%3Deb%26rsv_sug4%3D337%26rsv_sug2%3D0%26inputT%3D543
-Dec 26 14:27:43 Privoxy(-1331737792) Request: c.baidu.com/c.gif?t=0&q=asd&p=0&pn=1
-Dec 26 14:27:44 Privoxy(-1306559680) Request: suggestion.baidu.com/su?wd=&zxmode=1&json=1&p=3&sid=10382_1466_10166_10693_10500_10496_10753_10647_10458_10795_10218_10591_10356_10666_10596_10096_10658_10442_10699_10461_10404_9950_10620_10626&bs=asd&cb=jQuery110205214707618453839_1419575263463&_=1419575263464
-Dec 26 14:27:44 Privoxy(-1382094016) Request: host == sclick.baidu.com, port == 80
-Dec 26 14:27:44 Privoxy(-1382094016) Request: int connect() : before select
-Dec 26 14:27:44 Privoxy(-1373701312) Request: host == passport.baidu.com, port == 80
-Dec 26 14:27:44 Privoxy(-1373701312) Request: int connect() : before select
-Dec 26 14:27:44 Privoxy(-1382094016) Request: int connect()  : after select
-Dec 26 14:27:44 Privoxy(-1373701312) Request: int connect()  : after select
-Dec 26 14:27:44 Privoxy(-1331737792) Request: host == c.baidu.com, port == 80
-Dec 26 14:27:44 Privoxy(-1331737792) Request: int connect() : before select
-Dec 26 14:27:44 Privoxy(-1331737792) Request: int connect()  : after select
-Dec 26 14:27:44 Privoxy(-1306559680) Request: host == suggestion.baidu.com, port == 80
-Dec 26 14:27:44 Privoxy(-1306559680) Request: int connect() : before select
-Dec 26 14:27:44 Privoxy(-1306559680) Request: int connect()  : after select
-Dec 26 14:27:44 Privoxy(-1306559680) Request: t12.baidu.com/it/u=3876896495,2096171169&fm=58
-Dec 26 14:27:44 Privoxy(-1306559680) Request: host == t12.baidu.com, port == 80
-Dec 26 14:27:44 Privoxy(-1306559680) Request: int connect() : before select
-Dec 26 14:27:44 Privoxy(-1306559680) Request: int connect()  : after select
-Dec 26 14:27:46 Privoxy(-1306559680) Request: eclick.baidu.com/ps_fp.htm?pid=ps&fp=undefined&im=undefined&wf=undefined&br=3&qid=fbc8fd9c0000e98e&bi=16456C5FEEE81E06EEFB785A11B21BB4:FG=1
-Dec 26 14:27:46 Privoxy(-1306559680) Request: host == eclick.baidu.com, port == 80
-Dec 26 14:27:46 Privoxy(-1306559680) Request: int connect() : before select
-Dec 26 14:27:46 Privoxy(-1306559680) Request: int connect()  : after select
-Dec 26 14:27:48 Privoxy(-1306559680) Request: www.baidu.com/
-Dec 26 14:27:48 Privoxy(-1306559680) Request: host == www.baidu.com, port == 80
-Dec 26 14:27:48 Privoxy(-1306559680) Request: int connect() : before select
-Dec 26 14:27:48 Privoxy(-1306559680) Request: int connect()  : after select
-Dec 26 14:27:49 Privoxy(-1306559680) Request: passport.baidu.com/passApi/js/uni_login_wrapper.js?cdnversion=1419575269593&_=1419575269363
-Dec 26 14:27:49 Privoxy(-1373701312) Request: suggestion.baidu.com/su?wd=&zxmode=1&json=1&p=3&sid=10382_1466_10166_10693_10500_10496_10753_10647_10458_10795_10218_10591_10356_10666_10596_10096_10658_10442_10699_10461_10404_9950_10620_10626&cb=jQuery110202244478146294724_1419575269364&_=1419575269365
-Dec 26 14:27:50 Privoxy(-1373701312) Request: host == suggestion.baidu.com, port == 80
-Dec 26 14:27:50 Privoxy(-1373701312) Request: int connect() : before select
-Dec 26 14:27:50 Privoxy(-1373701312) Request: int connect()  : after select
-Dec 26 14:27:50 Privoxy(-1306559680) Request: host == passport.baidu.com, port == 80
-Dec 26 14:27:50 Privoxy(-1306559680) Request: int connect() : before select
-Dec 26 14:27:50 Privoxy(-1306559680) Request: int connect()  : after select
-Dec 26 14:27:54 Privoxy(-1306559680) Request: www.baidu.com/
-Dec 26 14:27:54 Privoxy(-1306559680) Request: host == www.baidu.com, port == 80
-Dec 26 14:27:54 Privoxy(-1306559680) Request: int connect() : before select
-Dec 26 14:27:54 Privoxy(-1306559680) Request: int connect()  : after select
-Dec 26 14:27:55 Privoxy(-1306559680) Request: passport.baidu.com/passApi/js/uni_login_wrapper.js?cdnversion=1419575275471&_=1419575275286
-Dec 26 14:27:55 Privoxy(-1373701312) Request: suggestion.baidu.com/su?wd=&zxmode=1&json=1&p=3&sid=10382_1466_10166_10693_10500_10496_10753_10647_10458_10795_10218_10591_10356_10666_10596_10096_10658_10442_10699_10461_10404_9950_10620_10626&cb=jQuery1102018586106800774838_1419575275287&_=1419575275288
-Dec 26 14:27:55 Privoxy(-1306559680) Request: host == passport.baidu.com, port == 80
-Dec 26 14:27:55 Privoxy(-1306559680) Request: int connect() : before select
-Dec 26 14:27:55 Privoxy(-1306559680) Request: int connect()  : after select
-Dec 26 14:27:55 Privoxy(-1373701312) Request: host == suggestion.baidu.com, port == 80
-Dec 26 14:27:55 Privoxy(-1373701312) Request: int connect() : before select
-Dec 26 14:27:55 Privoxy(-1373701312) Request: int connect()  : after select
-Dec 26 14:29:15 Privoxy(-1373701312) Request: www.baidu.com/
-Dec 26 14:29:15 Privoxy(-1373701312) Request: host == www.baidu.com, port == 80
-Dec 26 14:29:15 Privoxy(-1373701312) Request: int connect() : before select
-Dec 26 14:29:15 Privoxy(-1373701312) Request: in select
-Dec 26 14:29:16 Privoxy(-1373701312) Request: config.privoxy.org/send-stylesheet cgi call
-Dec 26 14:29:16 Privoxy(-1373701312) Request: config.privoxy.org/send-stylesheet crunch!
-Dec 26 14:29:23 Privoxy(-1373701312) Request: www.baidu.com/
-Dec 26 14:29:23 Privoxy(-1373701312) Request: host == www.baidu.com, port == 80
-Dec 26 14:29:23 Privoxy(-1373701312) Request: int connect() : before select
-Dec 26 14:29:23 Privoxy(-1373701312) Request: in select
-Dec 26 14:29:23 Privoxy(-1373701312) Request: config.privoxy.org/send-stylesheet cgi call
-Dec 26 14:29:23 Privoxy(-1373701312) Request: config.privoxy.org/send-stylesheet crunch!
-Dec 26 14:29:26 Privoxy(-1373701312) Request: www.baidu.com/
-Dec 26 14:29:27 Privoxy(-1373701312) Request: host == www.baidu.com, port == 80
-Dec 26 14:29:27 Privoxy(-1373701312) Request: int connect() : before select
-Dec 26 14:29:27 Privoxy(-1373701312) Request: in select
-Dec 26 14:29:27 Privoxy(-1373701312) Request: config.privoxy.org/send-stylesheet cgi call
-Dec 26 14:29:27 Privoxy(-1373701312) Request: config.privoxy.org/send-stylesheet crunch!
-Dec 26 14:29:28 Privoxy(-1373701312) Request: www.baidu.com/
-Dec 26 14:29:29 Privoxy(-1373701312) Request: host == www.baidu.com, port == 80
-Dec 26 14:29:29 Privoxy(-1373701312) Request: int connect() : before select
-Dec 26 14:29:29 Privoxy(-1373701312) Request: int connect()  : after select
-Dec 26 14:29:30 Privoxy(-1373701312) Request: passport.baidu.com/passApi/js/uni_login_wrapper.js?cdnversion=1419575370742&_=1419575370473
-Dec 26 14:29:30 Privoxy(-1306559680) Request: suggestion.baidu.com/su?wd=&zxmode=1&json=1&p=3&sid=10382_1466_10166_10693_10500_10496_10753_10647_10458_10795_10218_10591_10356_10666_10596_10096_10658_10442_10699_10461_10404_9950_10620_10626&cb=jQuery1102007992291328844592_1419575370474&_=1419575370475
-Dec 26 14:29:31 Privoxy(-1373701312) Request: host == passport.baidu.com, port == 80
-Dec 26 14:29:31 Privoxy(-1373701312) Request: int connect() : before select
-Dec 26 14:29:31 Privoxy(-1306559680) Request: host == suggestion.baidu.com, port == 80
-Dec 26 14:29:31 Privoxy(-1306559680) Request: int connect() : before select
-Dec 26 14:29:31 Privoxy(-1373701312) Request: int connect()  : after select
-Dec 26 14:29:31 Privoxy(-1306559680) Request: in select
-Dec 26 14:29:36 Privoxy(-1373701312) Request: www.baidu.com/
-Dec 26 14:29:36 Privoxy(-1373701312) Request: host == www.baidu.com, port == 80
-Dec 26 14:29:36 Privoxy(-1373701312) Request: int connect() : before select
-Dec 26 14:29:36 Privoxy(-1373701312) Request: in select
-Dec 26 14:29:36 Privoxy(-1373701312) Request: config.privoxy.org/send-stylesheet cgi call
-Dec 26 14:29:36 Privoxy(-1373701312) Request: config.privoxy.org/send-stylesheet crunch!
-Dec 26 14:29:44 Privoxy(-1373701312) Request: www.baidu.com/
-Dec 26 14:29:45 Privoxy(-1373701312) Request: host == www.baidu.com, port == 80
-Dec 26 14:29:45 Privoxy(-1373701312) Request: int connect() : before select
-Dec 26 14:29:45 Privoxy(-1373701312) Request: int connect()  : after select
-Dec 26 14:29:46 Privoxy(-1373701312) Request: passport.baidu.com/passApi/js/uni_login_wrapper.js?cdnversion=1419575386426&_=1419575386239
-Dec 26 14:29:46 Privoxy(-1306559680) Request: suggestion.baidu.com/su?wd=&zxmode=1&json=1&p=3&sid=10382_1466_10166_10693_10500_10496_10753_10647_10458_10795_10218_10591_10356_10666_10596_10096_10658_10442_10699_10461_10404_9950_10620_10626&cb=jQuery110206412599535654911_1419575386240&_=1419575386241
-Dec 26 14:29:46 Privoxy(-1306559680) Request: host == suggestion.baidu.com, port == 80
-Dec 26 14:29:46 Privoxy(-1306559680) Request: int connect() : before select
-Dec 26 14:29:46 Privoxy(-1306559680) Request: int connect()  : after select
-Dec 26 14:29:48 Privoxy(-1373701312) Request: host == passport.baidu.com, port == 80
-Dec 26 14:29:48 Privoxy(-1373701312) Request: int connect() : before select
-Dec 26 14:29:48 Privoxy(-1373701312) Request: in select
+Dec 26 15:47:20 Privoxy(-1218984256) Info: Privoxy version 3.0.3
+Dec 26 15:47:20 Privoxy(-1218984256) Info: Program name: ./privoxy
+Dec 26 15:47:20 Privoxy(-1218984256) Info: Listening on port 8118 for local connections only
+Dec 26 15:47:26 Privoxy(-1219040448) Request: www.baidu.com/
+Dec 26 15:47:27 Privoxy(-1219040448) Request: host == www.baidu.com, port == 80
+Dec 26 15:47:27 Privoxy(-1219040448) Request: int connect() : before select
+Dec 26 15:47:27 Privoxy(-1219040448) Request: int connect()  : after select
+Dec 26 15:47:29 Privoxy(-1219040448) Request: passport.baidu.com/passApi/js/uni_login_wrapper.js?cdnversion=1419580049024&_=1419580048797
+Dec 26 15:47:29 Privoxy(-1228932288) Request: suggestion.baidu.com/su?wd=&zxmode=1&json=1&p=3&sid=10382_1466_10166_10693_10500_10496_10753_10647_10458_10795_10218_10591_10356_10666_10596_10096_10658_10442_10699_10461_10404_9950_10620_10626&cb=jQuery110203801182093777332_1419580048798&_=1419580048799
+Dec 26 15:47:29 Privoxy(-1228932288) Request: host == suggestion.baidu.com, port == 80
+Dec 26 15:47:29 Privoxy(-1228932288) Request: int connect() : before select
+Dec 26 15:47:29 Privoxy(-1228932288) Request: int connect()  : after select
+Dec 26 15:47:31 Privoxy(-1219040448) Request: host == passport.baidu.com, port == 80
+Dec 26 15:47:31 Privoxy(-1219040448) Request: int connect() : before select
+Dec 26 15:47:31 Privoxy(-1219040448) Request: int connect()  : after select
+Dec 26 15:47:37 Privoxy(-1219040448) Request: dailynews.sina.com/gb/ads/www/120_60/2.js crunch!
+Dec 26 15:47:37 Privoxy(-1219040448) Request: dailynews.sina.com/gb/ads/www/120_60/3.js crunch!
+Dec 26 15:47:37 Privoxy(-1219040448) Request: dailynews.sina.com/gb/ads/www/120_60/5.js crunch!
+Dec 26 15:47:37 Privoxy(-1228932288) Request: dailynews.sina.com/gb/ads/www/120_60/4.js crunch!
+Dec 26 15:47:37 Privoxy(-1239418048) Request: dailynews.sina.com/gb/ads/www/120_60/6.js crunch!
+Dec 26 15:47:37 Privoxy(-1219040448) Request: dailynews.sina.com/gb/ads/www/120_60/7.js crunch!
+Dec 26 15:47:37 Privoxy(-1239418048) Request: dailynews.sina.com/gb/ads/www/120_60/9.js crunch!
+Dec 26 15:47:37 Privoxy(-1228932288) Request: dailynews.sina.com/gb/ads/www/120_60/10.js crunch!
+Dec 26 15:47:37 Privoxy(-1219040448) Request: dailynews.sina.com/gb/ads/www/120_60/8.js crunch!
+Dec 26 15:47:37 Privoxy(-1239418048) Request: dailynews.sina.com/gb/ads/www/120_60/11.js crunch!
+Dec 26 15:47:37 Privoxy(-1239418048) Request: dailynews.sina.com/gb/ads/common/floatingvideo.js crunch!
+Dec 26 15:47:37 Privoxy(-1219040448) Request: secure-us.imrworldwide.com/v60.js crunch!
+Dec 26 15:47:37 Privoxy(-1219040448) Request: d3.sina.com.cn/shh/ws/2012/xb/gladnews_run.js
+Dec 26 15:47:37 Privoxy(-1239418048) Request: ad.doubleclick.net/adj/us.homepage/;pos=top;sz=728x90;ord=9377885432338376? crunch!
+Dec 26 15:47:37 Privoxy(-1239418048) Request: beacon.sina.com.cn/a.gif?V=2&CI=sz:1162x590|dp:24|ac:Mozilla|an:Netscape|cpu:undefined|pf:Linux%20i686|jv:1.3|ct:unkown|lg:undefined|tz:-8|fv:0&PI=pid:0-9999-0-0-1|st:0|et:1|ref:not%20your%20business%21|hp:unkown|PGLS:|ZT:|MT:|keys:&UI=vid:2926467501848.765.1419580057918|sid:7424953870605.202.1419580057923|lv::1:1:1|un:|uo:|ae:&EX=ex1:|ex2:&gUid_1419580057929
+Dec 26 15:47:37 Privoxy(-1228932288) Request: dailynews.sina.com/gb/ads/www/120_60/2.js crunch!
+Dec 26 15:47:37 Privoxy(-1228932288) Request: dailynews.sina.com/gb/ads/www/120_60/3.js crunch!
+Dec 26 15:47:37 Privoxy(-1228932288) Request: dailynews.sina.com/gb/ads/www/120_60/4.js crunch!
+Dec 26 15:47:37 Privoxy(-1228932288) Request: dailynews.sina.com/gb/ads/www/120_60/5.js crunch!
+Dec 26 15:47:37 Privoxy(-1228932288) Request: dailynews.sina.com/gb/ads/www/120_60/6.js crunch!
+Dec 26 15:47:38 Privoxy(-1228932288) Request: dailynews.sina.com/gb/ads/www/120_60/7.js crunch!
+Dec 26 15:47:38 Privoxy(-1228932288) Request: dailynews.sina.com/gb/ads/www/120_60/8.js crunch!
+Dec 26 15:47:38 Privoxy(-1228932288) Request: dailynews.sina.com/gb/ads/www/120_60/9.js crunch!
+Dec 26 15:47:38 Privoxy(-1228932288) Request: dailynews.sina.com/gb/ads/www/120_60/10.js crunch!
+Dec 26 15:47:38 Privoxy(-1228932288) Request: dailynews.sina.com/gb/ads/www/120_60/11.js crunch!
+Dec 26 15:47:38 Privoxy(-1228932288) Request: dailynews.sina.com/gb/ads/common/floatingvideo.js crunch!
+Dec 26 15:47:38 Privoxy(-1219040448) Request: host == d3.sina.com.cn, port == 80
+Dec 26 15:47:38 Privoxy(-1219040448) Request: int connect() : before select
+Dec 26 15:47:38 Privoxy(-1219040448) Request: int connect()  : after select
+Dec 26 15:47:38 Privoxy(-1239418048) Request: host == beacon.sina.com.cn, port == 80
+Dec 26 15:47:38 Privoxy(-1239418048) Request: int connect() : before select
+Dec 26 15:47:38 Privoxy(-1239418048) Request: int connect()  : after select
+Dec 26 15:47:53 Privoxy(-1239418048) Request: start.ubuntu.com/12.04/Google/?sourceid=hp
+Dec 26 15:47:54 Privoxy(-1239418048) Request: host == start.ubuntu.com, port == 80
+Dec 26 15:47:54 Privoxy(-1239418048) Request: int connect() : before select
+Dec 26 15:47:54 Privoxy(-1239418048) Request: int connect()  : after select
+Dec 26 15:47:55 Privoxy(-1239418048) Request: start.ubuntu.com/12.04/sprite.png
+Dec 26 15:47:58 Privoxy(-1239418048) Request: host == start.ubuntu.com, port == 80
+Dec 26 15:47:58 Privoxy(-1239418048) Request: int connect() : before select
+Dec 26 15:47:58 Privoxy(-1239418048) Request: int connect()  : after select
