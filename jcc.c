@@ -622,6 +622,7 @@ const char jcc_rcs[] = "$Id: jcc.c,v 1.92.2.14 2003/12/12 12:52:53 oes Exp $";
 
 #else /* ifndef _WIN32 */
 
+#include <sys/epoll.h>
 # if !defined (__OS2__)
 # include <unistd.h>
 # include <sys/wait.h>
@@ -829,13 +830,17 @@ static void chat(struct client_state *csp)
 
 #define IS_ENABLED_AND   IS_TOGGLED_ON_AND IS_NOT_FORCED_AND
 
+#define MAX_EVENTS	1024
    char buf[BUFFER_SIZE];
    char *hdr;
    char *p;
    char *req;
-   fd_set rfds;
-   int n;
-   jb_socket maxfd;
+   //fd_set rfds;
+   int i, n;
+   //jb_socket maxfd;
+   jb_socket epfd;
+   struct epoll_event ev;
+   struct epoll_event evlist[MAX_EVENTS];
    int server_body;
    int ms_iis5_hack = 0;
    int byte_count = 0;
@@ -1281,13 +1286,36 @@ static void chat(struct client_state *csp)
    /* we're finished with the client's header */
    freez(hdr);
 
-   maxfd = ( csp->cfd > csp->sfd ) ? csp->cfd : csp->sfd;
+   //maxfd = ( csp->cfd > csp->sfd ) ? csp->cfd : csp->sfd;
 
    /* pass data between the client and server
     * until one or the other shuts down the connection.
     */
 
    server_body = 0;
+
+   epfd = epoll_create(MAX_EVENTS);
+   if (epfd == -1)
+   {
+	   log_error(LOG_LEVEL_GPC, "epoll_create error");
+	   return;
+   }
+
+   ev.events = EPOLLIN;
+   ev.data.fd = csp->cfd;
+   if (epoll_ctl(epfd, EPOLL_CTL_ADD, csp->cfd, &ev) == -1)
+   {
+	   log_error(LOG_LEVEL_GPC, "epoll_ctl error");
+	   return;
+   }
+
+   ev.events = EPOLLIN;
+   ev.data.fd = csp->sfd;
+   if (epoll_ctl(epfd, EPOLL_CTL_ADD, csp->sfd, &ev) == -1)
+   {
+	   log_error(LOG_LEVEL_GPC, "epoll_ctl error");
+	   return;
+   }
 
    for (;;)
    {
@@ -1296,16 +1324,17 @@ static void chat(struct client_state *csp)
        * FD_ZERO here seems to point to an errant macro which crashes.
        * So do this by hand for now...
        */
-      memset(&rfds,0x00,sizeof(fd_set));
+      //memset(&rfds,0x00,sizeof(fd_set));
 #else
-      FD_ZERO(&rfds);
+      //FD_ZERO(&rfds);
 #endif
-      FD_SET(csp->cfd, &rfds);
-      FD_SET(csp->sfd, &rfds);
+      //FD_SET(csp->cfd, &rfds);
+      //FD_SET(csp->sfd, &rfds);
 	  
-	  
-      n = select((int)maxfd+1, &rfds, NULL, NULL, NULL);
-
+#if 0
+	  n = select((int)maxfd+1, &rfds, NULL, NULL, NULL);
+#endif
+	  n = epoll_wait(epfd, evlist, MAX_EVENTS, -1);
       if (n < 0)
       {
          log_error(LOG_LEVEL_ERROR, "select() failed!: %E");
@@ -1316,377 +1345,376 @@ static void chat(struct client_state *csp)
        * just read it and write it.
        */
 
-      if (FD_ISSET(csp->cfd, &rfds))
-      {
-         len = read_socket(csp->cfd, buf, sizeof(buf));
-		 
+	  for (i = 0; i < n; ++i)
+	  {
+		  if (evlist[i].data.fd == csp->cfd/*FD_ISSET(csp->cfd, &rfds)*/)
+		  {
+			 len = read_socket(csp->cfd, buf, sizeof(buf));
+
+			 if (len <= 0)
+			 {
+				return; /* "game over, man" */
+			 }
+
+			 if (write_socket(csp->sfd, buf, (size_t)len))
+			 {
+				log_error(LOG_LEVEL_ERROR, "write to: %s failed: %E", http->host);
+				return;
+			 }
+			 break;
+		  }
+
+		  /*
+		   * The server wants to talk.  It could be the header or the body.
+		   * If `hdr' is null, then it's the header otherwise it's the body.
+		   * FIXME: Does `hdr' really mean `host'? No.
+		   */
 
 
-         if (len <= 0)
-         {
-            break; /* "game over, man" */
-         }
+		  if (evlist[i].data.fd == csp->sfd/*FD_ISSET(csp->sfd, &rfds)*/)
+		  {
+			 fflush( 0 );
+			 len = read_socket(csp->sfd, buf, sizeof(buf) - 1);
 
-         if (write_socket(csp->sfd, buf, (size_t)len))
-         {
-            log_error(LOG_LEVEL_ERROR, "write to: %s failed: %E", http->host);
-            return;
-         }
-         continue;
-      }
+			 if (len < 0)
+			 {
+				log_error(LOG_LEVEL_ERROR, "read from: %s failed: %E", http->host);
 
-      /*
-       * The server wants to talk.  It could be the header or the body.
-       * If `hdr' is null, then it's the header otherwise it's the body.
-       * FIXME: Does `hdr' really mean `host'? No.
-       */
+				log_error(LOG_LEVEL_CLF, "%s - - [%T] \"%s\" 503 0",
+						  csp->ip_addr_str, http->ocmd);
 
+				rsp = error_response(csp, "connect-failed", errno);
 
-      if (FD_ISSET(csp->sfd, &rfds))
-      {
-         fflush( 0 );
-         len = read_socket(csp->sfd, buf, sizeof(buf) - 1);
+				if(rsp)
+				{
+				   if (write_socket(csp->cfd, rsp->head, rsp->head_length)
+					|| write_socket(csp->cfd, rsp->body, rsp->content_length))
+				   {
+					  log_error(LOG_LEVEL_ERROR, "write to: %s failed: %E", http->host);
+				   }
+				}
 
-         if (len < 0)
-         {
-            log_error(LOG_LEVEL_ERROR, "read from: %s failed: %E", http->host);
+				free_http_response(rsp);
+				return;
+			 }
 
-            log_error(LOG_LEVEL_CLF, "%s - - [%T] \"%s\" 503 0",
-                      csp->ip_addr_str, http->ocmd);
+			 /* Add a trailing zero.  This lets filter_popups
+			  * use string operations.
+			  */
+			 buf[len] = '\0';
 
-            rsp = error_response(csp, "connect-failed", errno);
+	#ifdef FEATURE_KILL_POPUPS
+			 /* Filter the popups on this read. */
+			 if (block_popups_now)
+			 {
+				filter_popups(buf, csp);
+			 }
+	#endif /* def FEATURE_KILL_POPUPS */
 
-            if(rsp)
-            {
-               if (write_socket(csp->cfd, rsp->head, rsp->head_length)
-                || write_socket(csp->cfd, rsp->body, rsp->content_length))
-               {
-                  log_error(LOG_LEVEL_ERROR, "write to: %s failed: %E", http->host);
-               }
-            }
+			 /* Normally, this would indicate that we've read
+			  * as much as the server has sent us and we can
+			  * close the client connection.  However, Microsoft
+			  * in its wisdom has released IIS/5 with a bug that
+			  * prevents it from sending the trailing \r\n in
+			  * a 302 redirect header (and possibly other headers).
+			  * To work around this if we've haven't parsed
+			  * a full header we'll append a trailing \r\n
+			  * and see if this now generates a valid one.
+			  *
+			  * This hack shouldn't have any impacts.  If we've
+			  * already transmitted the header or if this is a
+			  * SSL connection, then we won't bother with this
+			  * hack.  So we only work on partially received
+			  * headers.  If we append a \r\n and this still
+			  * doesn't generate a valid header, then we won't
+			  * transmit anything to the client.
+			  */
+			 if (len == 0)
+			 {
 
-            free_http_response(rsp);
-            return;
-         }
+				if (server_body || http->ssl)
+				{
+				   /*
+					* If we have been buffering up the document,
+					* now is the time to apply content modification
+					* and send the result to the client.
+					*/
+				   if (content_filter)
+				   {
+					  /*
+					   * If the content filter fails, use the original
+					   * buffer and length.
+					   * (see p != NULL ? p : csp->iob->cur below)
+					   */
+					  if (NULL == (p = (*content_filter)(csp)))
+					  {
+						 csp->content_length = csp->iob->eod - csp->iob->cur;
+					  }
 
-         /* Add a trailing zero.  This lets filter_popups
-          * use string operations.
-          */
-         buf[len] = '\0';
+					  hdr = sed(server_patterns, add_server_headers, csp);
+					  if (hdr == NULL)
+					  {
+						 /* FIXME Should handle error properly */
+						 log_error(LOG_LEVEL_FATAL, "Out of memory parsing server header");
+					  }
 
-#ifdef FEATURE_KILL_POPUPS
-         /* Filter the popups on this read. */
-         if (block_popups_now)
-         {
-            filter_popups(buf, csp);
-         }
-#endif /* def FEATURE_KILL_POPUPS */
+					  if (write_socket(csp->cfd, hdr, strlen(hdr))
+					   || write_socket(csp->cfd, p != NULL ? p : csp->iob->cur, csp->content_length))
+					  {
+						 log_error(LOG_LEVEL_ERROR, "write modified content to client failed: %E");
+						 freez(hdr);
+						 freez(p);
+						 return;
+					  }
 
-         /* Normally, this would indicate that we've read
-          * as much as the server has sent us and we can
-          * close the client connection.  However, Microsoft
-          * in its wisdom has released IIS/5 with a bug that
-          * prevents it from sending the trailing \r\n in
-          * a 302 redirect header (and possibly other headers).
-          * To work around this if we've haven't parsed
-          * a full header we'll append a trailing \r\n
-          * and see if this now generates a valid one.
-          *
-          * This hack shouldn't have any impacts.  If we've
-          * already transmitted the header or if this is a
-          * SSL connection, then we won't bother with this
-          * hack.  So we only work on partially received
-          * headers.  If we append a \r\n and this still
-          * doesn't generate a valid header, then we won't
-          * transmit anything to the client.
-          */
-         if (len == 0)
-         {
+					  freez(hdr);
+					  freez(p);
+				   }
 
-            if (server_body || http->ssl)
-            {
-               /*
-                * If we have been buffering up the document,
-                * now is the time to apply content modification
-                * and send the result to the client.
-                */
-               if (content_filter)
-               {
-                  /*
-                   * If the content filter fails, use the original
-                   * buffer and length.
-                   * (see p != NULL ? p : csp->iob->cur below)
-                   */
-                  if (NULL == (p = (*content_filter)(csp)))
-                  {
-                     csp->content_length = csp->iob->eod - csp->iob->cur;
-                  }
+				   return; /* "game over, man" */
+				}
 
-                  hdr = sed(server_patterns, add_server_headers, csp);
-                  if (hdr == NULL)
-                  {
-                     /* FIXME Should handle error properly */
-                     log_error(LOG_LEVEL_FATAL, "Out of memory parsing server header");
-                  }
+				/*
+				 * This is NOT the body, so
+				 * Let's pretend the server just sent us a blank line.
+				 */
+				len = sprintf(buf, "\r\n");
 
-                  if (write_socket(csp->cfd, hdr, strlen(hdr))
-                   || write_socket(csp->cfd, p != NULL ? p : csp->iob->cur, csp->content_length))
-                  {
-                     log_error(LOG_LEVEL_ERROR, "write modified content to client failed: %E");
-                     freez(hdr);
-                     freez(p);
-                     return;
-                  }
+				/*
+				 * Now, let the normal header parsing algorithm below do its
+				 * job.  If it fails, we'll exit instead of continuing.
+				 */
 
-                  freez(hdr);
-                  freez(p);
-               }
+				ms_iis5_hack = 1;
+			 }
 
-               break; /* "game over, man" */
-            }
+			 /*
+			  * If this is an SSL connection or we're in the body
+			  * of the server document, just write it to the client,
+			  * unless we need to buffer the body for later content-filtering
+			  */
 
-            /*
-             * This is NOT the body, so
-             * Let's pretend the server just sent us a blank line.
-             */
-            len = sprintf(buf, "\r\n");
+			 if (server_body || http->ssl)
+			 {
+				if (content_filter)
+				{
+				   /*
+					* If there is no memory left for buffering the content, or the buffer limit
+					* has been reached, switch to non-filtering mode, i.e. make & write the
+					* header, flush the iob and buf, and get out of the way.
+					*/
+				   if (add_to_iob(csp, buf, len))
+				   {
+					  size_t hdrlen;
+					  int flushed;
 
-            /*
-             * Now, let the normal header parsing algorithm below do its
-             * job.  If it fails, we'll exit instead of continuing.
-             */
+					  log_error(LOG_LEVEL_ERROR, "Flushing header and buffers. Stepping back from filtering.");
 
-            ms_iis5_hack = 1;
-         }
+					  hdr = sed(server_patterns, add_server_headers, csp);
+					  if (hdr == NULL)
+					  {
+						 /* 
+						  * Memory is too tight to even generate the header.
+						  * Send our static "Out-of-memory" page.
+						  */
+						 log_error(LOG_LEVEL_ERROR, "Out of memory while trying to flush.");
+						 rsp = cgi_error_memory();
 
-         /*
-          * If this is an SSL connection or we're in the body
-          * of the server document, just write it to the client,
-          * unless we need to buffer the body for later content-filtering
-          */
+						 if (write_socket(csp->cfd, rsp->head, rsp->head_length)
+							 || write_socket(csp->cfd, rsp->body, rsp->content_length))
+						 {
+							log_error(LOG_LEVEL_ERROR, "write to: %s failed: %E", http->host);
+						 }
+						 return;
+					  }
 
-         if (server_body || http->ssl)
-         {
-            if (content_filter)
-            {
-               /*
-                * If there is no memory left for buffering the content, or the buffer limit
-                * has been reached, switch to non-filtering mode, i.e. make & write the
-                * header, flush the iob and buf, and get out of the way.
-                */
-               if (add_to_iob(csp, buf, len))
-               {
-                  size_t hdrlen;
-                  int flushed;
+					  hdrlen = strlen(hdr);
 
-                  log_error(LOG_LEVEL_ERROR, "Flushing header and buffers. Stepping back from filtering.");
+					  if (write_socket(csp->cfd, hdr, hdrlen)
+					   || ((flushed = flush_socket(csp->cfd, csp)) < 0)
+					   || (write_socket(csp->cfd, buf, (size_t) len)))
+					  {
+						 log_error(LOG_LEVEL_CONNECT, "Flush header and buffers to client failed: %E");
 
-                  hdr = sed(server_patterns, add_server_headers, csp);
-                  if (hdr == NULL)
-                  {
-                     /* 
-                      * Memory is too tight to even generate the header.
-                      * Send our static "Out-of-memory" page.
-                      */
-                     log_error(LOG_LEVEL_ERROR, "Out of memory while trying to flush.");
-                     rsp = cgi_error_memory();
+						 freez(hdr);
+						 return;
+					  }
 
-                     if (write_socket(csp->cfd, rsp->head, rsp->head_length)
-                         || write_socket(csp->cfd, rsp->body, rsp->content_length))
-                     {
-                        log_error(LOG_LEVEL_ERROR, "write to: %s failed: %E", http->host);
-                     }
-                     return;
-                  }
+					  byte_count += hdrlen + flushed + len;
+					  freez(hdr);
+					  content_filter = NULL;
+					  server_body = 1;
 
-                  hdrlen = strlen(hdr);
+				   }
+				}
+				else
+				{
+				   if (write_socket(csp->cfd, buf, (size_t)len))
+				   {
+					  log_error(LOG_LEVEL_ERROR, "write to client failed: %E");
+					  return;
+				   }
+				}
+				byte_count += len;
+				break;
+			 }
+			 else
+			 {
+				/* we're still looking for the end of the
+				 * server's header ... (does that make header
+				 * parsing an "out of body experience" ?
+				 */
 
-                  if (write_socket(csp->cfd, hdr, hdrlen)
-                   || ((flushed = flush_socket(csp->cfd, csp)) < 0)
-                   || (write_socket(csp->cfd, buf, (size_t) len)))
-                  {
-                     log_error(LOG_LEVEL_CONNECT, "Flush header and buffers to client failed: %E");
-
-                     freez(hdr);
-                     return;
-                  }
-
-                  byte_count += hdrlen + flushed + len;
-                  freez(hdr);
-                  content_filter = NULL;
-                  server_body = 1;
-
-               }
-            }
-            else
-            {
-               if (write_socket(csp->cfd, buf, (size_t)len))
-               {
-                  log_error(LOG_LEVEL_ERROR, "write to client failed: %E");
-                  return;
-               }
-            }
-            byte_count += len;
-            continue;
-         }
-         else
-         {
-            /* we're still looking for the end of the
-             * server's header ... (does that make header
-             * parsing an "out of body experience" ?
-             */
-
-            /* 
-             * buffer up the data we just read.  If that fails, 
-             * there's little we can do but send our static
-             * out-of-memory page.
-             */
-            if (add_to_iob(csp, buf, len))
-            {
-               log_error(LOG_LEVEL_ERROR, "Out of memory while looking for end of server headers.");
-               rsp = cgi_error_memory();
+				/* 
+				 * buffer up the data we just read.  If that fails, 
+				 * there's little we can do but send our static
+				 * out-of-memory page.
+				 */
+				if (add_to_iob(csp, buf, len))
+				{
+				   log_error(LOG_LEVEL_ERROR, "Out of memory while looking for end of server headers.");
+				   rsp = cgi_error_memory();
                
-               if (write_socket(csp->cfd, rsp->head, rsp->head_length)
-                   || write_socket(csp->cfd, rsp->body, rsp->content_length))
-               {
-                  log_error(LOG_LEVEL_ERROR, "write to: %s failed: %E", http->host);
-               }
-               return;
-            }
+				   if (write_socket(csp->cfd, rsp->head, rsp->head_length)
+					   || write_socket(csp->cfd, rsp->body, rsp->content_length))
+				   {
+					  log_error(LOG_LEVEL_ERROR, "write to: %s failed: %E", http->host);
+				   }
+				   return;
+				}
 
-            /* get header lines from the iob */
+				/* get header lines from the iob */
 
-            while ((p = get_header(csp)) != NULL)
-            {
-               if (*p == '\0')
-               {
-                  /* see following note */
-                  break;
-               }
-               enlist(csp->headers, p);
-               freez(p);
-            }
+				while ((p = get_header(csp)) != NULL)
+				{
+				   if (*p == '\0')
+				   {
+					  /* see following note */
+					  break;
+				   }
+				   enlist(csp->headers, p);
+				   freez(p);
+				}
 
-            /* NOTE: there are no "empty" headers so
-             * if the pointer `p' is not NULL we must
-             * assume that we reached the end of the
-             * buffer before we hit the end of the header.
-             */
+				/* NOTE: there are no "empty" headers so
+				 * if the pointer `p' is not NULL we must
+				 * assume that we reached the end of the
+				 * buffer before we hit the end of the header.
+				 */
 
-            if (p)
-            {
-               if (ms_iis5_hack)
-               {
-                  /* Well, we tried our MS IIS/5
-                   * hack and it didn't work.
-                   * The header is incomplete
-                   * and there isn't anything
-                   * we can do about it.
-                   */
-                  break;
-               }
-               else
-               {
-                  /* Since we have to wait for
-                   * more from the server before
-                   * we can parse the headers
-                   * we just continue here.
-                   */
-                  continue;
-               }
-            }
+				if (p)
+				{
+				   if (ms_iis5_hack)
+				   {
+					  /* Well, we tried our MS IIS/5
+					   * hack and it didn't work.
+					   * The header is incomplete
+					   * and there isn't anything
+					   * we can do about it.
+					   */
+					  return;
+				   }
+				   else
+				   {
+					  /* Since we have to wait for
+					   * more from the server before
+					   * we can parse the headers
+					   * we just continue here.
+					   */
+					  break;
+				   }
+				}
 
-            /* we have now received the entire header.
-             * filter it and send the result to the client
-             */
+				/* we have now received the entire header.
+				 * filter it and send the result to the client
+				 */
 
-            hdr = sed(server_patterns, add_server_headers, csp);
-            if (hdr == NULL)
-            {
-               /* FIXME Should handle error properly */
-               log_error(LOG_LEVEL_FATAL, "Out of memory parsing server header");
-            }
+				hdr = sed(server_patterns, add_server_headers, csp);
+				if (hdr == NULL)
+				{
+				   /* FIXME Should handle error properly */
+				   log_error(LOG_LEVEL_FATAL, "Out of memory parsing server header");
+				}
 
-#ifdef FEATURE_KILL_POPUPS
-            /* Start blocking popups if appropriate. */
+	#ifdef FEATURE_KILL_POPUPS
+				/* Start blocking popups if appropriate. */
 
-            if ((csp->content_type & CT_TEXT) &&  /* It's a text / * MIME-Type */
-                !http->ssl    &&                  /* We talk plaintext */
-                block_popups)                     /* Policy allows */
-            {
-               block_popups_now = 1;
-               /*
-                * Filter the part of the body that came in the same read
-                * as the last headers:
-                */
-               filter_popups(csp->iob->cur, csp);
-            }
+				if ((csp->content_type & CT_TEXT) &&  /* It's a text / * MIME-Type */
+					!http->ssl    &&                  /* We talk plaintext */
+					block_popups)                     /* Policy allows */
+				{
+				   block_popups_now = 1;
+				   /*
+					* Filter the part of the body that came in the same read
+					* as the last headers:
+					*/
+				   filter_popups(csp->iob->cur, csp);
+				}
 
-#endif /* def FEATURE_KILL_POPUPS */
+	#endif /* def FEATURE_KILL_POPUPS */
 
-            /* Buffer and pcrs filter this if appropriate. */
+				/* Buffer and pcrs filter this if appropriate. */
 
-            if ((csp->content_type & CT_TEXT) &&  /* It's a text / * MIME-Type */
-                !http->ssl    &&                  /* We talk plaintext */
-                pcrs_filter)                      /* Policy allows */
-            {
-               content_filter = pcrs_filter_response;
-            }
+				if ((csp->content_type & CT_TEXT) &&  /* It's a text / * MIME-Type */
+					!http->ssl    &&                  /* We talk plaintext */
+					pcrs_filter)                      /* Policy allows */
+				{
+				   content_filter = pcrs_filter_response;
+				}
 
-            /* Buffer and gif_deanimate this if appropriate. */
+				/* Buffer and gif_deanimate this if appropriate. */
 
-            if ((csp->content_type & CT_GIF)  &&  /* It's a image/gif MIME-Type */
-                !http->ssl    &&                  /* We talk plaintext */
-                gif_deanimate)                    /* Policy allows */
-            {
-               content_filter = gif_deanimate_response;
-            }
+				if ((csp->content_type & CT_GIF)  &&  /* It's a image/gif MIME-Type */
+					!http->ssl    &&                  /* We talk plaintext */
+					gif_deanimate)                    /* Policy allows */
+				{
+				   content_filter = gif_deanimate_response;
+				}
 
-            /*
-             * Only write if we're not buffering for content modification
-             */
-            if (!content_filter)
-            {
-               /* write the server's (modified) header to
-                * the client (along with anything else that
-                * may be in the buffer)
-                */
+				/*
+				 * Only write if we're not buffering for content modification
+				 */
+				if (!content_filter)
+				{
+				   /* write the server's (modified) header to
+					* the client (along with anything else that
+					* may be in the buffer)
+					*/
 
-               if (write_socket(csp->cfd, hdr, strlen(hdr))
-                || ((len = flush_socket(csp->cfd, csp)) < 0))
-               {
-                  log_error(LOG_LEVEL_CONNECT, "write header to client failed: %E");
+				   if (write_socket(csp->cfd, hdr, strlen(hdr))
+					|| ((len = flush_socket(csp->cfd, csp)) < 0))
+				   {
+					  log_error(LOG_LEVEL_CONNECT, "write header to client failed: %E");
 
-                  /* the write failed, so don't bother
-                   * mentioning it to the client...
-                   * it probably can't hear us anyway.
-                   */
-                  freez(hdr);
-                  return;
-               }
+					  /* the write failed, so don't bother
+					   * mentioning it to the client...
+					   * it probably can't hear us anyway.
+					   */
+					  freez(hdr);
+					  return;
+				   }
 
-               byte_count += len;
-            }
+				   byte_count += len;
+				}
 
-            /* we're finished with the server's header */
+				/* we're finished with the server's header */
 
-            freez(hdr);
-            server_body = 1;
+				freez(hdr);
+				server_body = 1;
 
-            /* If this was a MS IIS/5 hack then it means
-             * the server has already closed the
-             * connection.  Nothing more to read.  Time
-             * to bail.
-             */
-            if (ms_iis5_hack)
-            {
-               break;
-            }
-         }
-         continue;
-      }
-
-      return; /* huh? we should never get here */
+				/* If this was a MS IIS/5 hack then it means
+				 * the server has already closed the
+				 * connection.  Nothing more to read.  Time
+				 * to bail.
+				 */
+				if (ms_iis5_hack)
+				{
+				   break;
+				}
+			 }
+			 break;
+		  }
+	  }
    }
 
    log_error(LOG_LEVEL_CLF, "%s - - [%T] \"%s\" 200 %d",
